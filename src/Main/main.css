@@ -26,7 +26,7 @@
 .Block {
   background-color: #f4f9fd;
   height: 500px;
-  width: 600px;
+  min-width: 600px;
   border-radius: 16px;
   color: #193b4d;
   margin: 0 20px;
@@ -38,7 +38,7 @@
 }
 
 button {
-  padding: 10px;
+  padding: 10px 30px;
   color: #e2fca4;
   background: #193b4d;
   border-radius: 5px;
@@ -54,5 +54,5 @@ button {
 }
 
 .add-block {
-  height: 500px;
+  /* height: 500px; */
 }

@@ -7,6 +7,7 @@ const CryptoJs = require("crypto-js/");
 const Landing = () => {
   const [chainState, setChainState] = useState(false);
   const [chain, setChain] = useState();
+  console.log(chain);
 
   function createNewChain() {
     const myCoin = new Blockchain();
@@ -14,12 +15,95 @@ const Landing = () => {
     setChain(myCoin);
   }
 
-  function createNewBlock() {
-    console.log("block created");
+  function RenderChain(chain) {
+    const i = 0;
+    console.log(chain.chain.chain.length);
+    const chainLength = chain.chain.chain.length;
+    const chainData = chain.chain.chain;
+
+    function RenderBlocks() {
+      for (let i = 0; i < chainLength; i++) {
+        return (
+          <div className="Block">
+            <h2 className="GenesisBlockHeader">{chainData[i].data}</h2>
+            <form>
+              <div className="form-group row">
+                <label
+                  htmlFor="previousHash"
+                  className="col-sm-4 col-form-label"
+                >
+                  Previous Hash:
+                </label>
+                <div className="col-sm-8">
+                  <input
+                    type="text"
+                    readOnly
+                    className="form-control-plaintext"
+                    id="previousHash"
+                    value={chainData[i].previousHash}
+                  />
+                </div>
+              </div>
+              <div className="form-group row">
+                <label htmlFor="blockHash" className="col-sm-4 col-form-label">
+                  Block Hash:
+                </label>
+                <div className="col-sm-8">
+                  <input
+                    type="text"
+                    readOnly
+                    className="form-control"
+                    id="blockHash"
+                    value={chainData[i].hash}
+                  />
+                </div>
+              </div>
+              <div className="form-group row">
+                <label
+                  htmlFor="blockTimestamp"
+                  className="col-sm-4 col-form-label"
+                >
+                  Timestamp:
+                </label>
+                <div className="col-sm-8">
+                  <input
+                    type="text"
+                    readOnly
+                    className="form-control"
+                    id="blockTimestamp"
+                    value={chainData[i].timestamp}
+                  />
+                </div>
+              </div>
+              <div className="form-group row">
+                <label htmlFor="blockData" className="col-sm-4 col-form-label">
+                  Block Data
+                </label>
+                <div className="col-sm-8">
+                  <textarea
+                    rows="3"
+                    type="text"
+                    readOnly
+                    className="form-control"
+                    id="blockData"
+                    value={chainData[i].data}
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        );
+      }
+    }
+    return (
+      <div className="Chain-container">
+        <RenderBlocks />
+      </div>
+    );
   }
 
   function BlockchainDemo() {
-    if (!chainState) {
+    if (chain == null) {
       return (
         <div className="Chain-container">
           <div className="Block">
@@ -38,75 +122,7 @@ const Landing = () => {
         </div>
       );
     } else {
-      return (
-        <div className="Chain-container">
-          <div className="Block">
-            <h2 className="GenesisBlockHeader">{chain.chain[0].data}</h2>
-            <form>
-              <div class="form-group row">
-                <label for="previousHash" class="col-sm-4 col-form-label">
-                  Previous Hash:
-                </label>
-                <div class="col-sm-8">
-                  <input
-                    type="text"
-                    readonly
-                    class="form-control-plaintext"
-                    id="previousHash"
-                    value={chain.chain[0].previousHash}
-                  />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="blockHash" class="col-sm-4 col-form-label">
-                  Block Hash:
-                </label>
-                <div class="col-sm-8">
-                  <input
-                    type="text"
-                    readonly
-                    class="form-control"
-                    id="blockHash"
-                    value={chain.chain[0].hash}
-                  />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="blockTimestamp" class="col-sm-4 col-form-label">
-                  Timestamp:
-                </label>
-                <div class="col-sm-8">
-                  <input
-                    type="text"
-                    readonly
-                    class="form-control"
-                    id="blockTimestamp"
-                    value={chain.chain[0].timestamp}
-                  />
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="blockData" class="col-sm-4 col-form-label">
-                  Block Data
-                </label>
-                <div class="col-sm-8">
-                  <textarea
-                    rows="3"
-                    type="text"
-                    readonly
-                    class="form-control"
-                    id="blockData"
-                    value={chain.chain[0].data}
-                  />
-                </div>
-              </div>
-            </form>
-          </div>
-          <button className="add-block" onClick={createNewBlock}>
-            +
-          </button>
-        </div>
-      );
+      return <RenderChain chain={chain} />;
     }
   }
 
@@ -185,7 +201,6 @@ class Blockchain {
         return false;
       }
     }
-
     return true;
   }
 }
