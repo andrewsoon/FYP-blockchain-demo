@@ -15,9 +15,10 @@
 }
 
 .Chain-container {
-  margin-top: 100px;
+  margin-top: 10vh;
   display: flex;
   flex-direction: row;
+  align-items: center;
   overflow-x: scroll;
   padding: 50px;
   min-height: 90vh;
@@ -26,7 +27,7 @@
 .Block {
   background-color: #f4f9fd;
   height: 500px;
-  min-width: 600px;
+  width: 600px;
   border-radius: 16px;
   color: #193b4d;
   margin: 0 20px;
@@ -43,6 +44,12 @@ button {
   background: #193b4d;
   border-radius: 5px;
   border: none;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #e2fca4;
+  color: #193b4d;
 }
 
 .GenesisBlockHeader {
@@ -54,5 +61,5 @@ button {
 }
 
 .add-block {
-  /* height: 500px; */
+  height: 100px;
 }

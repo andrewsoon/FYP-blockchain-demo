@@ -7,7 +7,7 @@ const CryptoJs = require("crypto-js/");
 const Landing = () => {
   const [chainState, setChainState] = useState(false);
   const [chain, setChain] = useState();
-  console.log(chain);
+  const [blockData, setBlockData] = useState();
 
   function createNewChain() {
     const myCoin = new Blockchain();
@@ -25,7 +25,7 @@ const Landing = () => {
       for (let i = 0; i < chainLength; i++) {
         return (
           <div className="Block">
-            <h2 className="GenesisBlockHeader">{chainData[i].data}</h2>
+            <h2 className="GenesisBlockHeader">Block {i}</h2>
             <form>
               <div className="form-group row">
                 <label
@@ -95,9 +95,44 @@ const Landing = () => {
         );
       }
     }
+
     return (
       <div className="Chain-container">
         <RenderBlocks />
+        <AddBlockForm />
+      </div>
+    );
+  }
+
+  const handleAddBlock = (evt) => {
+    evt.preventDefault();
+    alert("Block Data ", { blockData });
+  };
+
+  function AddBlockForm() {
+    return (
+      <div className="Block">
+        <h2>Add New Block</h2>
+        <form onSubmit={handleAddBlock}>
+          <div className="form-group row">
+            <label htmlFor="blockData" className="col-sm-4 col-form-label">
+              Block Data
+            </label>
+            <div className="col-sm-8">
+              <textarea
+                rows="3"
+                type="text"
+                className="form-control"
+                id="addBlockData"
+                value={blockData}
+                onChange={(e) => setBlockData(e.target.value)}
+              />
+            </div>
+          </div>
+          <button className="add-block" type="submit">
+            Add Block +
+          </button>
+        </form>
       </div>
     );
   }
