@@ -8,6 +8,7 @@ const CryptoJs = require("crypto-js/");
 const Landing = () => {
   const [chainState, setChainState] = useState(false); //* For Blockchain Verifier
   const [chain, setChain] = useState();
+  console.log(chain);
 
   function createNewChain() {
     const myCoin = new Blockchain();
@@ -35,7 +36,7 @@ const Landing = () => {
         </div>
       );
     } else {
-      return <StartChain chain={chain} />;
+      return <StartChain chain={chain} block={Block} updateChain={setChain} />;
     }
   }
 
@@ -100,8 +101,7 @@ class Blockchain {
 }
 
 class Block {
-  constructor(index, timestamp, data, previousHash = "") {
-    this.index = index;
+  constructor(timestamp, data, previousHash = "") {
     this.timestamp = timestamp;
     this.data = data;
     this.previousHash = previousHash;
@@ -110,10 +110,7 @@ class Block {
 
   calculateHash() {
     return CryptoJs.SHA256(
-      this.index +
-        this.previousHash +
-        this.timestamp +
-        JSON.stringify(this.data).toString()
+      this.previousHash + this.timestamp + JSON.stringify(this.data).toString()
     ).toString(CryptoJs.enc.Hex);
   }
 }

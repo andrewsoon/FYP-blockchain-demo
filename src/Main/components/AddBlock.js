@@ -1,16 +1,30 @@
 import { useState } from "react";
 import "./components.css";
 
-const AddBlock = () => {
+function AddBlock({ chain, block, updateRenderChain }) {
   const [blockData, setBlockData] = useState();
+
   const handleAddBlock = (event) => {
     event.preventDefault();
-    console.log("haha", { blockData });
     alert(`Block Data ${blockData}`);
+    chain.addBlock(
+      new block(
+        new Intl.DateTimeFormat("en-US", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        }).format(Date.now()),
+        blockData
+      )
+    );
+    console.log(chain);
+    updateRenderChain(chain);
   };
   const onChangeHandler = (event) => {
     setBlockData(event.target.value);
-    console.log(blockData);
   };
 
   return (
@@ -38,6 +52,6 @@ const AddBlock = () => {
       </form>
     </div>
   );
-};
+}
 
 export default AddBlock;
