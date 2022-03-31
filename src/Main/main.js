@@ -1,19 +1,23 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
-import StartChain from "./components/StartChain";
+import { useDispatch, useSelector } from "react-redux";
+import AddBlock from "./components/AddBlock";
+import RenderBlocks from "./components/RenderBlocks";
 import "./main.css";
+import { CreateChain } from "./store/actions";
 
 const CryptoJs = require("crypto-js/");
 
 const Landing = () => {
-  const [chainState, setChainState] = useState(false); //* For Blockchain Verifier
   const [chain, setChain] = useState();
-  console.log(chain);
+  const chainRedux = useSelector((state) => state.chain);
+  const dispatch = useDispatch();
 
   function createNewChain() {
     const myCoin = new Blockchain();
-    setChainState(true);
     setChain(myCoin);
+    dispatch(CreateChain(new Blockchain()));
+    console.log(chainRedux);
   }
 
   function BlockchainDemo() {
@@ -36,7 +40,15 @@ const Landing = () => {
         </div>
       );
     } else {
-      return <StartChain chain={chain} block={Block} updateChain={setChain} />;
+      return (
+        <div className="Chain-container">
+          <RenderBlocks
+            chainLength={chain.chain.length}
+            chainData={chain.chain}
+          />
+          <AddBlock chain={chain} block={Block} updateRenderChain={setChain} />
+        </div>
+      );
     }
   }
 
@@ -50,7 +62,7 @@ const Landing = () => {
   );
 };
 
-class Blockchain {
+export class Blockchain {
   constructor() {
     this.chain = [this.createGenesisBlock()];
   }
@@ -100,7 +112,7 @@ class Blockchain {
   }
 }
 
-class Block {
+export class Block {
   constructor(timestamp, data, previousHash = "") {
     this.timestamp = timestamp;
     this.data = data;

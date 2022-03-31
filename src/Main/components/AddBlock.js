@@ -1,9 +1,8 @@
 import { useState } from "react";
 import "./components.css";
 
-function AddBlock({ chain, block, updateRenderChain }) {
+function AddBlock({ chain, block }) {
   const [blockData, setBlockData] = useState();
-
   const handleAddBlock = (event) => {
     event.preventDefault();
     alert(`Block Data ${blockData}`);
@@ -20,8 +19,6 @@ function AddBlock({ chain, block, updateRenderChain }) {
         blockData
       )
     );
-    console.log(chain);
-    updateRenderChain(chain);
   };
   const onChangeHandler = (event) => {
     setBlockData(event.target.value);
