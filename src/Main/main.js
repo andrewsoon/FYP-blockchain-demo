@@ -1,9 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import BlockchainDemo from "./components/BlockchainDemo";
 import "./main.css";
-import { CreateChain } from "./store/actions";
 
 const CryptoJs = require("crypto-js/");
 
