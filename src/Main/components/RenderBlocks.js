@@ -1,15 +1,15 @@
 import { useSelector } from "react-redux";
+import "./components.css";
 
 function RenderBlocks() {
   const chainRedux = useSelector((state) => state);
-  const chainLength = chainRedux.chain.chain.length;
   const chainData = chainRedux.chain.chain;
-  console.log("hoho");
-  if (chainRedux != null) {
-    for (let i = 0; i < chainLength; i++) {
-      return (
-        <div className="Block">
-          <h2 className="GenesisBlockHeader">Block {i}</h2>
+
+  return (
+    <div className="Chain-container">
+      {chainData.map((data, index) => (
+        <div className="Block" key={index}>
+          <h2 className="GenesisBlockHeader">Block {index}</h2>
           <form>
             <div className="form-group row">
               <label htmlFor="previousHash" className="col-sm-4 col-form-label">
@@ -19,9 +19,9 @@ function RenderBlocks() {
                 <input
                   type="text"
                   readOnly
-                  className="form-control-plaintext"
+                  className="form-control"
                   id="previousHash"
-                  value={chainData[i].previousHash}
+                  value={data.previousHash}
                 />
               </div>
             </div>
@@ -35,7 +35,7 @@ function RenderBlocks() {
                   readOnly
                   className="form-control"
                   id="blockHash"
-                  value={chainData[i].hash}
+                  value={data.hash}
                 />
               </div>
             </div>
@@ -52,7 +52,7 @@ function RenderBlocks() {
                   readOnly
                   className="form-control"
                   id="blockTimestamp"
-                  value={chainData[i].timestamp}
+                  value={data.timestamp}
                 />
               </div>
             </div>
@@ -67,16 +67,15 @@ function RenderBlocks() {
                   readOnly
                   className="form-control"
                   id="blockData"
-                  value={chainData[i].data}
+                  value={data.data}
                 />
               </div>
             </div>
           </form>
         </div>
-      );
-    }
-  }
-  return null;
+      ))}
+    </div>
+  );
 }
 
 export default RenderBlocks;

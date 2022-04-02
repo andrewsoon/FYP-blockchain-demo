@@ -1,17 +1,40 @@
-.Chain-container {
-  margin-top: 10vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  overflow-x: scroll;
+.Demo-wrapper {
+  margin-top: 5vh;
   padding: 50px;
   min-height: 90vh;
 }
 
+.Demo-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.Demo-Add-Edit-Row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.Chain-Validity-True {
+  padding: 10px 40px;
+  background-color: #e2fca4;
+}
+
+.Chain-Validity-False {
+  padding: 10px 40px;
+  background-color: #fcaea4;
+}
+
+.Chain-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .Block {
   background-color: #f4f9fd;
-  height: 500px;
-  width: 600px;
+  height: 400px;
+  min-width: 400px;
   border-radius: 16px;
   color: #193b4d;
   margin: 0 20px;
@@ -20,6 +43,20 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.AddBlock {
+  background-color: #ebf3fa;
+  min-width: 400px;
+  border-radius: 16px;
+  color: #193b4d;
+  margin: 0 20px;
+  box-shadow: 5px 10px 10px 0px #c9c9c9;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 20px;
 }
 
 button {
@@ -45,5 +82,5 @@ button:hover {
 }
 
 .add-block {
-  height: 100px;
+  height: 50px;
 }

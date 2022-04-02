@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Block } from "../main";
+import { CreateChain } from "../store/actions";
 import "./components.css";
 
 function AddBlock() {
   const chainRedux = useSelector((state) => state);
   const chain = chainRedux.chain;
   const [blockData, setBlockData] = useState();
+  const dispatch = useDispatch();
   const handleAddBlock = (event) => {
     event.preventDefault();
-    alert(`Block Data ${blockData}`);
+    alert(`Block with data "${blockData}" has been added to the chain!`);
     chain.addBlock(
       new Block(
         new Intl.DateTimeFormat("en-US", {
@@ -23,13 +25,14 @@ function AddBlock() {
         blockData
       )
     );
+    dispatch(CreateChain(chain));
   };
   const onChangeHandler = (event) => {
     setBlockData(event.target.value);
   };
 
   return (
-    <div className="Block">
+    <div className="AddBlock">
       <h2>Add New Block</h2>
       <form onSubmit={handleAddBlock}>
         <div className="form-group row">
@@ -37,7 +40,7 @@ function AddBlock() {
             Block Data
           </label>
           <div className="col-sm-8">
-            <textarea
+            <input
               rows="3"
               type="text"
               className="form-control"
