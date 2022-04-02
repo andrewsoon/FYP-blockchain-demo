@@ -1,15 +1,13 @@
 const initialState = {
-  chain: {},
-  isChainValid: false,
+  chain: null,
 };
 
 const Chain = (state = initialState, action) => {
+  console.log(action.payload, action.type);
   switch (action.type) {
     case "CREATE_CHAIN":
-      console.log("hello");
       return {
-        chain: action.payload,
-        isChainValid: true,
+        chain: action.payload.chain,
       };
     default:
       return state;

@@ -1,57 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AddBlock from "./components/AddBlock";
-import RenderBlocks from "./components/RenderBlocks";
+import BlockchainDemo from "./components/BlockchainDemo";
 import "./main.css";
 import { CreateChain } from "./store/actions";
 
 const CryptoJs = require("crypto-js/");
 
 const Landing = () => {
-  const [chain, setChain] = useState();
-  const chainRedux = useSelector((state) => state.chain);
-  const dispatch = useDispatch();
-
-  function createNewChain() {
-    const myCoin = new Blockchain();
-    setChain(myCoin);
-    dispatch(CreateChain(new Blockchain()));
-    console.log(chainRedux);
-  }
-
-  function BlockchainDemo() {
-    if (chain == null) {
-      return (
-        <div className="Chain-container">
-          <div className="Block">
-            <h2>Blockchain Demo</h2>
-            <p>
-              Clicking the button below will create a new blockchain with a
-              genesis block. <br />
-              <br />
-              Find out how a blockchain works by adding more blocks and editing
-              already created blocks!
-            </p>
-            <button className="button" onClick={createNewChain}>
-              Create New Chain
-            </button>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="Chain-container">
-          <RenderBlocks
-            chainLength={chain.chain.length}
-            chainData={chain.chain}
-          />
-          <AddBlock chain={chain} block={Block} updateRenderChain={setChain} />
-        </div>
-      );
-    }
-  }
-
   return (
     <div className="Main-container">
       <header className="Main-header">

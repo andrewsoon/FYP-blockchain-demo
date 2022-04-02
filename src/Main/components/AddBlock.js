@@ -1,13 +1,17 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Block } from "../main";
 import "./components.css";
 
-function AddBlock({ chain, block }) {
+function AddBlock() {
+  const chainRedux = useSelector((state) => state);
+  const chain = chainRedux.chain;
   const [blockData, setBlockData] = useState();
   const handleAddBlock = (event) => {
     event.preventDefault();
     alert(`Block Data ${blockData}`);
     chain.addBlock(
-      new block(
+      new Block(
         new Intl.DateTimeFormat("en-US", {
           year: "numeric",
           month: "2-digit",
