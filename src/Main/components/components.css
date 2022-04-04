@@ -1,21 +1,19 @@
 .Demo-wrapper {
-  margin-top: 5vh;
+  margin-top: 4.5vh;
   padding: 50px;
-  min-height: 90vh;
+  padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
 }
 
 .Demo-row {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  margin-bottom: 20px;
 }
-.Demo-Add-Edit-Row {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
+
 .Chain-Validity-True {
+  width: 100%;
   padding: 10px 40px;
   background-color: #e2fca4;
 }
@@ -28,16 +26,20 @@
 .Chain-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background-color: #ededed;
+  overflow: scroll;
+  width: 1000px;
+  height: 75vh;
 }
 
 .Block {
   background-color: #f4f9fd;
   height: 400px;
-  min-width: 400px;
   border-radius: 16px;
   color: #193b4d;
-  margin: 0 20px;
+  margin: 20px;
   box-shadow: 5px 10px 10px 0px #c9c9c9;
   padding: 20px;
   display: flex;
@@ -47,16 +49,15 @@
 
 .AddBlock {
   background-color: #ebf3fa;
-  min-width: 400px;
+  min-width: 350px;
   border-radius: 16px;
   color: #193b4d;
-  margin: 0 20px;
   box-shadow: 5px 10px 10px 0px #c9c9c9;
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-bottom: 20px;
+  margin: 0px 20px 20px 0px;
 }
 
 button {

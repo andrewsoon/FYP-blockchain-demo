@@ -9,6 +9,7 @@ function AddBlock() {
   const chain = chainRedux.chain;
   const [blockData, setBlockData] = useState();
   const dispatch = useDispatch();
+
   const handleAddBlock = (event) => {
     event.preventDefault();
     alert(`Block with data "${blockData}" has been added to the chain!`);
@@ -47,10 +48,17 @@ function AddBlock() {
               id="addBlockData"
               value={blockData}
               onChange={onChangeHandler}
+              required
             />
           </div>
         </div>
-        <button className="add-block" type="submit">
+        <button
+          className="add-block"
+          type="submit"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Fill in data to add to chain!"
+        >
           Add Block +
         </button>
       </form>

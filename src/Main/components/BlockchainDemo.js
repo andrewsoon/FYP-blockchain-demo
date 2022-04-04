@@ -1,10 +1,11 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Blockchain } from "../main";
 import { CreateChain } from "../store/actions";
 import AddBlock from "./AddBlock";
-import RenderBlocks from "./RenderBlocks";
 import "./components.css";
 import EditBlock from "./EditBlock";
+import RenderBlocks from "./RenderBlocks";
 
 function BlockchainDemo() {
   const chainRedux = useSelector((state) => state);
@@ -28,7 +29,7 @@ function BlockchainDemo() {
                 genesis block. <br />
                 <br />
                 Find out how a blockchain works by adding more blocks and
-                editing already created blocks!
+                editing existing blocks!
               </p>
               <button className="button" onClick={createNewChain}>
                 Create New Chain
@@ -44,11 +45,11 @@ function BlockchainDemo() {
             <h3 className="Chain-Validity-False">Chain is NOT VALID</h3>
           )}
           <div className="Demo-row">
+            <div>
+              <AddBlock />
+              <EditBlock />
+            </div>
             <RenderBlocks />
-          </div>
-          <div className="Demo-Add-Edit-Row">
-            <AddBlock />
-            <EditBlock />
           </div>
         </div>
       )}

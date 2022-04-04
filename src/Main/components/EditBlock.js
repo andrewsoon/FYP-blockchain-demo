@@ -28,7 +28,7 @@ function EditBlock() {
 
   return (
     <div className="AddBlock">
-      <h2>Edit Block</h2>
+      <h2>*Edit Block</h2>
       <form onSubmit={handleEditBlock}>
         <div className="form-group row">
           <label htmlFor="blockData" className="col-sm-4 col-form-label">
@@ -62,7 +62,13 @@ function EditBlock() {
             />
           </div>
         </div>
-        <button className="add-block" type="submit">
+        <button
+          className="add-block"
+          type="submit"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="Try and edit an existing block's data and observe the changes in the block's data and hash"
+        >
           Edit Block
         </button>
       </form>
