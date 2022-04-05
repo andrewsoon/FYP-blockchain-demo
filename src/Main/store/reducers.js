@@ -9,12 +9,6 @@ const Chain = (state = initialState, action) => {
       return {
         chain: action.payload.chain,
       };
-    case "EDIT_CHAIN": {
-      return {
-        ...state,
-        chain: action.payload,
-      };
-    }
     default:
       return state;
   }
